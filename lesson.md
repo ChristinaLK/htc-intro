@@ -30,6 +30,7 @@ This directory should contain a script called `print_msg.sh`.
 It takes in any text as an argument and prints a greeting to file.  
 
 > Try it
+>
 > Try running `print_msg` with a message of your choice.  What is the output?  
 
 Most computational tasks in science can be reduced to this simple paradigm of 
