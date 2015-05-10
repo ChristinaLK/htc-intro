@@ -40,7 +40,7 @@ input/arguments -> program -> output.  We will later refer to this chain as a "j
 >
 > What does your computational task look like?  What are the input and output?  
 
-## For loops
+## For Loops
 
 What if I wanted to run this script multiple times, to print many messages?  
 
@@ -83,7 +83,7 @@ a program called a *scheduler*.  The *submit file* contains instructions for the
 and the *scheduler* reads it and then will create the jobs described in the loop, and 
 assign them to processors in its *pool* of computers.  
 
-## Submit file basics 
+## Submit File Basics
 
 ### Numerical arguments: 
 
@@ -139,7 +139,7 @@ queue name from names.txt
 > Change the appropriate lines in `names.submit` to reflect the code above.  
 
 
-## Submitting and Managing HTCondor jobs
+## Submitting and Managing HTCondor Jobs
 
 Now that we have moved our multiple tasks into a submit file, we can submit them 
 to Condor and let it run them for us.  
@@ -155,11 +155,24 @@ to Condor and let it run them for us.
 	are on hold.  See the [Manual Page](http://research.cs.wisc.edu/htcondor/manual/current/condor_q.html) for more information.  
 * Remove jobs from the queue: `condor_rm <netid>` or `<condorm_rm <JobId>`
 
-## Side Note: organizing your submissions
+## Side Note: Directory Organization I
 
-> talk about organizing files, how to submit jobs
+> talk about organizing files, paths, etc.
 
 ## Input Files
 
-What if the difference between jobs is not an argument, but an input file?  
+What if the difference between jobs is not an argument passed to the script, but an input file?  
+Like before, our submit file will tell HTCondor about our different input files, and we have multiple 
+options for doing so.  
 
+### Numerically-named input files
+
+> use $(Process) in transfer_input_files
+
+### List of files with common prefix or extension
+
+> use queue file matching *glob
+
+## Side Note: Directory Organization II
+
+> input/output files, initialdir
