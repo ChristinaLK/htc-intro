@@ -55,7 +55,7 @@ done
 
 Running a for loop on your computer means that you are only using one processor.  
 
-![One Processor]("figs/single_cpu.png")
+![One Processor](figs/single_cpu.png)
 
 > ### Discussion
 >
@@ -68,7 +68,7 @@ High throughput computing is a way of changing the for loop so that each task, o
 *job*, can each be run separately on its own processor, instead of all in a row 
 on one processor.  Graphically, that looks like this: 
 
-![Many Processors]("figs/multi_cpu.png")
+![Many Processors](figs/multi_cpu.png)
 
 In code, we want a for loop that does this:
 ~~~
