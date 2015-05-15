@@ -99,7 +99,7 @@ To treat each step of the loop as a separate job, assigned to a different machin
 I would use the following lines in a submit file:
 
 ~~~
-executable = print_msg
+executable = print_msg.sh
 arguments = $(Process)
 
 queue 5
@@ -127,7 +127,7 @@ for name in names.txt
 
 In a submit file, the syntax for this looks something like this: 
 ~~~
-executable = print_msg
+executable = print_msg.sh
 arguments = $(name)
 
 queue name from names.txt
@@ -136,8 +136,8 @@ queue name from names.txt
 > ### Try it
 >
 > Make a copy of `basic.submit` called `names.submit`.
-> Change the appropriate lines in `names.submit` to reflect the code above.  
-> You may also want to the change the prefix to the log/output/error files.  
+> Change the appropriate lines in `names.submit` to reflect the code above.  You 
+> may also want to the change the prefix to the log/output/error files.  
 
 ## Submitting and Managing HTCondor Jobs
 
@@ -162,18 +162,19 @@ At this point, our directory is probably getting a little crowded:
 ~~~
 $ ls 
 
-0_greeting.txt      basic_440908_2.log   Donald_greeting.txt   names_440913_2.log
-1_greeting.txt      basic_440908_2.out   history.txt           names_440913_2.out
-2_greeting.txt      basic_440908_3.err   lesson.md             names_440913_3.err
-3_greeting.txt      basic_440908_3.log   Mickey_greeting.txt   names_440913_3.log
-4_greeting.txt      basic_440908_3.out   Miss_greeting.txt     names_440913_3.out
-basic_440908_0.err  basic_440908_4.err   names_440913_0.err    names_440913_4.err
-basic_440908_0.log  basic_440908_4.log   names_440913_0.log    names_440913_4.log
-basic_440908_0.out  basic_440908_4.out   names_440913_0.out    names_440913_4.out
-basic_440908_1.err  basic.submit         names_440913_1.err    names.submit
-basic_440908_1.log  Bucky_greeting.txt   names_440913_1.log    names.txt
-basic_440908_1.out  Bugs_greeting.txt    names_440913_1.out    print_msg.sh
-basic_440908_2.err  cowsay-3.03.tar.gz   names_440913_2.err    README.md
+0_greeting.txt      basic_466513_2.out      images               names_466565_2.out
+1_greeting.txt      basic_466513_3.err      lesson.md            names_466565_3.err
+2_greeting.txt      basic_466513_3.log      LICENSE.md           names_466565_3.log
+3_greeting.txt      basic_466513_3.out      Mickey_greeting.txt  names_466565_3.out
+4_greeting.txt      basic_466513_4.err      Miss_greeting.txt    names_466565_4.err
+basic_466513_0.err  basic_466513_4.log      names_466565_0.err   names_466565_4.log
+basic_466513_0.log  basic_466513_4.out      names_466565_0.log   names_466565_4.out
+basic_466513_0.out  basic.submit            names_466565_0.out   names.submit
+basic_466513_1.err  Bucky_greeting.txt      names_466565_1.err   names.txt
+basic_466513_1.log  Bugs_greeting.txt       names_466565_1.log   print_msg.sh
+basic_466513_1.out  Christina_greeting.txt  names_466565_1.out   README.md
+basic_466513_2.err  Donald_greeting.txt     names_466565_2.err   translate
+basic_466513_2.log  figs                    names_466565_2.log
 ~~~
 
 Even when just getting started, it is important to organize your files in a sensible 
@@ -204,6 +205,7 @@ htc-intro/
 > 
 > * The `mkdir` command will make directories.  
 > * The wildcard `*` will be very useful in moving groups of files.  
+> * Tab completion is your friend!  
 
 
 > ### Follow up 
@@ -282,15 +284,17 @@ queue img matching *.jpg
 
 So far, each of our programs has just created one output file, so it's not too bad 
 to keep all the input/output files in the same directory.  But what if we have a lot 
-of output files?  Or a lot of input files?  There's a submit file option that will 
-allow each job to have its own directory.  
+of output files?  Or a lot of input files?  In the `translate` directory, there is a 
+script that will take one input file (in English) and produce three output files (in 
+German, French and Spanish).  There's a submit file option that will allow the 
+translation of each English word to have its own directory.  
 
 ~~~
 executable = translate.sh
 # arguments = 
 
 initialdir = $(Process)
-transfer_input_files = ../dictionary/,word.txt,
+transfer_input_files = word.txt,../dictionary/
 
 queue 5
 ~~~
