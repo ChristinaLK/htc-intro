@@ -218,15 +218,16 @@ the next example!
 ## Input Files
 
 What if the difference between jobs is not an argument passed to the script, but an 
-input file?  In the `images` directory, there is a script that will take in a jpeg 
-image and convert it to a pixel image, using a python library.  We also have two 
+input file?  In the `images` directory, there is an `img_conver.sh` script that will take 
+in a jpg 
+image and convert it to an ascii text file.  We also have two 
 sub-directories of images that we would like to convert using this script.  We want 
 a loop that does this: 
 
 ~~~
 for img.jpg in img_dir/
     queue job, where job runs
-    pixel_img.sh img.jpg
+    img_convert.sh img.jpg
 ~~~
 
 Like before, there is a specific syntax to do this in the submit file.  
@@ -238,7 +239,7 @@ can also use it to indicate different numbered input files.  The submit file
 notation will look something like this: 
 
 ~~~
-executable = ../pixel_img.sh
+executable = ../img_convert.sh
 transfer_input_files = image$(Process).jpg
 
 queue 5
@@ -263,7 +264,7 @@ of using `$(Process)` for that group of images, we will use the following submit
 syntax: 
 
 ~~~
-executable = ../pixel_img.sh
+executable = ../img_convert.sh
 arguments = $(img)
 transfer_input_files = $(img)
 

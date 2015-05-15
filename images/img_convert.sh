@@ -26,6 +26,4 @@ cd ..
 
 ##run jp2a
 alias jp2a="$jp2adir/bin/jp2a"
-image=*.jpg
-jp2a -invert $image > ascii_$image
-
+jp2a $1 > ascii_$1.txt
