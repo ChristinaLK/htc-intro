@@ -1,11 +1,9 @@
 #!/bin/bash
 
-name=$1
-fullname=$*
+word=`cat word.txt`
 
-tar xzf cowsay-3.03.tar.gz 
-cd cowsay-3.03
-./install.sh ./
-bin/cowsay Hello $fullname >> ../$1_greeting.txt
-cd ..
-rm -rf cowsay-3.03/
+for file in french.txt spanish.txt german.txt
+do
+	grep $word $file | cut -d : -f 2 > temp
+	mv temp $file
+done

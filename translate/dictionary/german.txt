@@ -1,0 +1,5 @@
+butterfly: schmetterling
+book: buch
+Thanks: Danke
+apple: apfel
+tomorrow: morgen

@@ -1,0 +1,5 @@
+butterfly: papillon
+book: livre
+Thanks: Merci
+apple: pomme
+tomorrow: demain

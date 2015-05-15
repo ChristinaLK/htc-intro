@@ -1,17 +1,18 @@
 universe = vanilla
-log = basic_$(Cluster)_$(Process).log
-error = basic_$(Cluster)_$(Process).err
-output = basic_$(Cluster)_$(Process).out
+log = translate_$(Cluster)_$(Process).log
+error = translate_$(Cluster)_$(Process).err
+output = translate_$(Cluster)_$(Process).out
 
-executable = 
-arguments = 
+executable = translate.sh
+#arguments = 
 
+initialdir = 
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
-transfer_input_files = cowsay-3.03.tar.gz
+transfer_input_files = ../dictionary,word.txt
 
 request_cpus = 1
 request_memory = 1000
 request_disk = 1000
 
-queue
+queue 5

@@ -1,0 +1,5 @@
+butterfly: mariposa
+book: libro
+Thanks: Gracias
+apple: manzana
+tomorrow: manana
