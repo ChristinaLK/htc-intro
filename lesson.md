@@ -248,7 +248,7 @@ If our script also needs the name of the file as an argument, then we should add
 `$(Process)` to the arguments line as well: 
 
 ~~~
-arguments = "image$(Process).jpg"
+arguments = image$(Process).jpg
 ~~~
 
 > ### Try it
