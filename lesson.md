@@ -253,7 +253,7 @@ arguments = "image$(Process).jpg"
 
 > ### Try it
 >
-> Move `image.submit` to the `wi_imgs/` directory.  Then
+> Copy `image.submit` to the `wi_imgs/` directory.  Then
 > add the above lines to `image.submit` and try submitting the jobs.  
 
 ### List of files with common prefix or extension
