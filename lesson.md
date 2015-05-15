@@ -29,14 +29,14 @@ Type `q` to exit the `less` program.
 This directory should contain a script called `print_msg.sh`.  
 It takes in any text as an argument and prints a greeting to file.  
 
-> ## Try it
+> ### Try it
 >
 > Try running `print_msg` with a name of your choice.  What is the output?  
 
 Most computational tasks in science can be reduced to this simple paradigm of 
 input/arguments -> program -> output.  We will later refer to this chain as a "job".  
 
-> ## Discussion
+> ### Discussion
 >
 > What does your computational task look like?  What are the input and output?  
 
@@ -46,7 +46,7 @@ What if I wanted to run this script multiple times, to print many messages?
 
 The typical way to do this is the programming construct called a for loop.  
 
-> ## Try it
+> ### Try it
 > ~~~
 > for num in {0..4}
 > do
@@ -54,7 +54,7 @@ The typical way to do this is the programming construct called a for loop.
 > done
 > ~~~
 
-> ## Discussion
+> ### Discussion
 >
 > What factors would make running this kind of loop impractical?
 
@@ -109,7 +109,7 @@ The `queue` keyword will generate a certain number of jobs (5, in this case) and
 the `$(Process)` is a special variable that iterates from zero to N-1 (here, from 0 
 to 4), creating a job for each process number.  
 
-> ## Try it
+> ### Try it
 >
 > Fill out the executable and argument lines in `basic.submit`.  Then change the 
 > `queue` statement to run 5 jobs.  
@@ -133,7 +133,7 @@ arguments = $(name)
 queue name from names.txt
 ~~~
 
-> ## Try it
+> ### Try it
 >
 > Make a copy of `basic.submit` called `names.submit`.
 > Change the appropriate lines in `names.submit` to reflect the code above.  
@@ -178,11 +178,10 @@ basic_440908_2.err  cowsay-3.03.tar.gz   names_440913_2.err    README.md
 Even when just getting started, it is important to organize your files in a sensible 
 way.    
 
-> ## Try it
+> ### Try it
 > 
-> Let's separate our "message" jobs into one directory, `messages` and the 
-> remaining image 
-> files and scripts into another, `images`.  Then, in the `messages` directory, split our two 
+> Let's put our "message" jobs into a directory called `messages`  Then, in 
+the `messages` directory, split our two 
 > job batches into two directories, `basic` and `names`
 
 ~~~
@@ -201,16 +200,17 @@ htc-intro/
     images/
     	pixel_img.sh
     	image.submit
-    	imgs/
+    	uw_imgs/
+    	art_imgs/
     	
 ~~~
 
-> ## Tips
+> ### Tips
 > 
 > * The `mkdir` command will make directories.  
 > * The wildcard `*` will be very useful in moving groups of files.  
 
-> ## Follow up 
+> ### Follow up 
 > 
 > If we try to re-submit the `basic.submit` file, what goes wrong?  How could it be fixed?  
 
@@ -222,9 +222,8 @@ the next example!
 ## Input Files
 
 What if the difference between jobs is not an argument passed to the script, but an 
-input file?  
-Like before, our submit file will tell HTCondor about our different input files, 
-and we have multiple options for doing so.  
+input file?  Like before, our submit file will tell HTCondor about our different
+ input files, and we have multiple options for doing so.  
 
 ### Numerically-named input files
 
@@ -234,14 +233,14 @@ notation will look something like this:
 
 ~~~
 executable = pixel_image.sh
-transfer_input_files = $(Process)
+transfer_input_files = image$(Process).jpg
 
 queue 5
 ~~~
 
 ### List of files with common prefix or extension
 
-We also have a list of files 
+We also have a list of images that aren't numbered.  We'd like to run 
 
 
 ## Side Note: Directory Organization II
