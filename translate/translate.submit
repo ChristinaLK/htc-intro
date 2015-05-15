@@ -9,10 +9,10 @@ executable = translate.sh
 initialdir = 
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
-transfer_input_files = ../dictionary,word.txt
+transfer_input_files = 
 
 request_cpus = 1
 request_memory = 1000
 request_disk = 1000
 
-queue 5
+queue

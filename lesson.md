@@ -11,8 +11,8 @@ $ ssh <netid>@submit-x.chtc.wisc.edu
 * Get the materials for this tutorial
 
 ~~~
-$ git clone https://github.com/CHTC/htc-intro.git
-$ cd htc-intro.git
+$ git clone https://github.com/CHTC/htc-intro
+$ cd htc-intro
 ~~~
 
 * Look at the files
@@ -26,8 +26,8 @@ Type `q` to exit the `less` program.
 
 ## Scripts and Science
 
-This directory should contain a script called `print_msg.sh`.  
-It takes in any text as an argument and prints a greeting to file.  
+This directory should contain a script called `print_msg.sh`.  It takes in any 
+text as an argument and prints a greeting to file.  
 
 > ### Try it
 >
@@ -218,7 +218,7 @@ the next example!
 ## Input Files
 
 What if the difference between jobs is not an argument passed to the script, but an 
-input file?  In the `images` directory, there is an `img_conver.sh` script that will take 
+input file?  In the `images` directory, there is an `img_convert.sh` script that will take 
 in a jpg 
 image and convert it to an ascii text file.  We also have two 
 sub-directories of images that we would like to convert using this script.  We want 
@@ -242,7 +242,7 @@ notation will look something like this:
 executable = ../img_convert.sh
 transfer_input_files = image$(Process).jpg
 
-queue 5
+queue 3
 ~~~
 
 If our script also needs the name of the file as an argument, then we should add 
@@ -290,7 +290,7 @@ executable = translate.sh
 # arguments = 
 
 initialdir = $(Process)
-transfer_input_files = ../dictionary,word.txt,
+transfer_input_files = ../dictionary/,word.txt,
 
 queue 5
 ~~~
