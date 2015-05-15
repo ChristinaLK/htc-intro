@@ -1,7 +1,7 @@
 universe = vanilla
-log = basic_$(Cluster)_$(Process).log
-error = basic_$(Cluster)_$(Process).err
-output = basic_$(Cluster)_$(Process).out
+log = image_$(Cluster)_$(Process).log
+error = image_$(Cluster)_$(Process).err
+output = image_$(Cluster)_$(Process).out
 
 executable = 
 arguments = 
@@ -12,6 +12,6 @@ transfer_input_files = cowsay-3.03.tar.gz
 
 request_cpus = 1
 request_memory = 1000
-request_disk = 1000
+request_disk = 250000
 
 queue
