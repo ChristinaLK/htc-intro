@@ -12,7 +12,7 @@ $ ssh <netid>@submit-x.chtc.wisc.edu
 
 ~~~
 $ git clone https://github.com/CHTC/htc-intro
-$ cd htc-intro
+$ cd htc-intro/
 ~~~
 
 * Look at the files
@@ -46,21 +46,21 @@ What if I wanted to run this script multiple times, to print many messages?
 
 The typical way to do this is the programming construct called a for loop.  
 
-> ### Try it
-> ~~~
-> for num in {0..4}
-> do
-> 	./print_msg $num
-> done
-> ~~~
-
-> ### Discussion
->
-> What factors would make running this kind of loop impractical?
+~~~
+for num in {0..4}
+do
+	./print_msg $num
+done
+~~~
 
 Running a for loop on your computer means that you are only using one processor.  
 
-> image here
+![One Processor]("figs/single_cpu.png")
+
+> ### Discussion
+>
+> What factors would make running this kind of loop on one computer impractical?
+
 
 ## High Throughput Computing
 
@@ -68,7 +68,7 @@ High throughput computing is a way of changing the for loop so that each task, o
 *job*, can each be run separately on its own processor, instead of all in a row 
 on one processor.  Graphically, that looks like this: 
 
-> image here
+![Many Processors]("figs/multi_cpu.png")
 
 In code, we want a for loop that does this:
 ~~~
