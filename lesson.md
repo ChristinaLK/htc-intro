@@ -29,14 +29,14 @@ Type `q` to exit the `less` program.
 This directory should contain a script called `print_msg.sh`.  
 It takes in any text as an argument and prints a greeting to file.  
 
-> Try it
+> ## Try it
 >
-> Try running `print_msg` with a message of your choice.  What is the output?  
+> Try running `print_msg` with a name of your choice.  What is the output?  
 
 Most computational tasks in science can be reduced to this simple paradigm of 
 input/arguments -> program -> output.  We will later refer to this chain as a "job".  
 
-> Discussion
+> ## Discussion
 >
 > What does your computational task look like?  What are the input and output?  
 
@@ -46,7 +46,7 @@ What if I wanted to run this script multiple times, to print many messages?
 
 The typical way to do this is the programming construct called a for loop.  
 
-> Try it
+> ## Try it
 > ~~~
 > for num in {0..4}
 > do
@@ -54,7 +54,7 @@ The typical way to do this is the programming construct called a for loop.
 > done
 > ~~~
 
-> Discussion
+> ## Discussion
 >
 > What factors would make running this kind of loop impractical?
 
@@ -109,7 +109,7 @@ The `queue` keyword will generate a certain number of jobs (5, in this case) and
 the `$(Process)` is a special variable that iterates from zero to N-1 (here, from 0 
 to 4), creating a job for each process number.  
 
-> Try it
+> ## Try it
 >
 > Fill out the executable and argument lines in `basic.submit`.  Then change the 
 > `queue` statement to run 5 jobs.  
@@ -133,11 +133,10 @@ arguments = $(name)
 queue name from names.txt
 ~~~
 
-> Try it
+> ## Try it
 >
 > Make a copy of `basic.submit` called `names.submit`.
 > Change the appropriate lines in `names.submit` to reflect the code above.  
-
 
 ## Submitting and Managing HTCondor Jobs
 
@@ -157,21 +156,93 @@ to Condor and let it run them for us.
 
 ## Side Note: Directory Organization I
 
-> talk about organizing files, paths, etc.
+At this point, our directory is probably getting a little crowded: 
+
+~~~
+$ ls 
+
+0_greeting.txt      basic_440908_2.log   Donald_greeting.txt   names_440913_2.log
+1_greeting.txt      basic_440908_2.out   history.txt           names_440913_2.out
+2_greeting.txt      basic_440908_3.err   lesson.md             names_440913_3.err
+3_greeting.txt      basic_440908_3.log   Mickey_greeting.txt   names_440913_3.log
+4_greeting.txt      basic_440908_3.out   Miss_greeting.txt     names_440913_3.out
+basic_440908_0.err  basic_440908_4.err   names_440913_0.err    names_440913_4.err
+basic_440908_0.log  basic_440908_4.log   names_440913_0.log    names_440913_4.log
+basic_440908_0.out  basic_440908_4.out   names_440913_0.out    names_440913_4.out
+basic_440908_1.err  basic.submit         names_440913_1.err    names.submit
+basic_440908_1.log  Bucky_greeting.txt   names_440913_1.log    names.txt
+basic_440908_1.out  Bugs_greeting.txt    names_440913_1.out    print_msg.sh
+basic_440908_2.err  cowsay-3.03.tar.gz   names_440913_2.err    README.md
+~~~
+
+Even when just getting started, it is important to organize your files in a sensible 
+way.    
+
+> ## Try it
+> 
+> Let's separate our "message" jobs into one directory, `messages` and the 
+> remaining image 
+> files and scripts into another, `images`.  Then, in the `messages` directory, split our two 
+> job batches into two directories, `basic` and `names`
+
+~~~
+htc-intro/
+    messages/
+    	print_msg.sh
+        basic/
+        	basic.submit
+            (log/error files)
+            *_greeting.txt
+        names/
+        	names.submit
+        	(log/error files)
+        	*_greeting.txt
+        	names.txt
+    images/
+    	pixel_img.sh
+    	image.submit
+    	imgs/
+    	
+~~~
+
+> ## Tips
+> 
+> * The `mkdir` command will make directories.  
+> * The wildcard `*` will be very useful in moving groups of files.  
+
+> ## Follow up 
+> 
+> If we try to re-submit the `basic.submit` file, what goes wrong?  How could it be fixed?  
+
+Note that the output/log/error files, plus any output files created by a batch of jobs 
+will always come back to the directory from which you submitted the submit file.  There 
+are other ways to redirect your input to other files, which we will discuss after 
+the next example!  
 
 ## Input Files
 
-What if the difference between jobs is not an argument passed to the script, but an input file?  
-Like before, our submit file will tell HTCondor about our different input files, and we have multiple 
-options for doing so.  
+What if the difference between jobs is not an argument passed to the script, but an 
+input file?  
+Like before, our submit file will tell HTCondor about our different input files, 
+and we have multiple options for doing so.  
 
 ### Numerically-named input files
 
-> use $(Process) in transfer_input_files
+Just as we used `$(Process)` to create jobs with different numerical arguments, we 
+can also use it to indicate different numbered input files.  The submit file 
+notation will look something like this: 
+
+~~~
+executable = pixel_image.sh
+transfer_input_files = $(Process)
+
+queue 5
+~~~
 
 ### List of files with common prefix or extension
 
-> use queue file matching *glob
+We also have a list of files 
+
 
 ## Side Note: Directory Organization II
 
