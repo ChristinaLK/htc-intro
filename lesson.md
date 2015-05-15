@@ -137,6 +137,7 @@ queue name from names.txt
 >
 > Make a copy of `basic.submit` called `names.submit`.
 > Change the appropriate lines in `names.submit` to reflect the code above.  
+> You may also want to the change the prefix to the log/output/error files.  
 
 ## Submitting and Managing HTCondor Jobs
 
@@ -196,13 +197,7 @@ htc-intro/
         	names.submit
         	(log/error files)
         	*_greeting.txt
-        	names.txt
-    images/
-    	pixel_img.sh
-    	image.submit
-    	uw_imgs/
-    	art_imgs/
-    	
+        	names.txt    	
 ~~~
 
 > ### Tips
@@ -210,11 +205,12 @@ htc-intro/
 > * The `mkdir` command will make directories.  
 > * The wildcard `*` will be very useful in moving groups of files.  
 
+
 > ### Follow up 
 > 
 > If we try to re-submit the `basic.submit` file, what goes wrong?  How could it be fixed?  
 
-Note that the output/log/error files, plus any output files created by a batch of jobs 
+Note that the any output files created by a batch of jobs 
 will always come back to the directory from which you submitted the submit file.  There 
 are other ways to redirect your input to other files, which we will discuss after 
 the next example!  
@@ -222,8 +218,18 @@ the next example!
 ## Input Files
 
 What if the difference between jobs is not an argument passed to the script, but an 
-input file?  Like before, our submit file will tell HTCondor about our different
- input files, and we have multiple options for doing so.  
+input file?  In the `images` directory, there is a script that will take in a jpeg 
+image and convert it to a pixel image, using a python library.  We also have two 
+sub-directories of images that we would like to convert using this script.  We want 
+a loop that does this: 
+
+~~~
+for img.jpg in img_dir/
+    queue job, where job runs
+    pixel_img.sh img.jpg
+~~~
+
+Like before, there is a specific syntax to do this in the submit file.  
 
 ### Numerically-named input files
 
@@ -232,17 +238,75 @@ can also use it to indicate different numbered input files.  The submit file
 notation will look something like this: 
 
 ~~~
-executable = pixel_image.sh
+executable = ../pixel_img.sh
 transfer_input_files = image$(Process).jpg
 
 queue 5
 ~~~
 
+If our script also needs the name of the file as an argument, then we should add 
+`$(Process)` to the arguments line as well: 
+
+~~~
+arguments = "image$(Process).jpg"
+~~~
+
+> ### Try it
+>
+> Move `image.submit` to the `wi_imgs/` directory.  Then
+> add the above lines to `image.submit` and try submitting the jobs.  
+
 ### List of files with common prefix or extension
 
-We also have a list of images that aren't numbered.  We'd like to run 
+We also have a list of images that aren't numbered, in the `art_imgs` directory.  Instead 
+of using `$(Process)` for that group of images, we will use the following submit file
+syntax: 
+
+~~~
+executable = ../pixel_img.sh
+arguments = $(img)
+transfer_input_files = $(img)
+
+queue img matching *.jpg
+~~~
+
+> ### Try it
+>
+> Make a copy of `image.submit` called `art.submit` in the `art_imgs/` directory.  Change 
+> the appropriate lines to create a job batch that analyzes all the images in the 
+> directory.  Submit the jobs.  
 
 
 ## Side Note: Directory Organization II
 
-> input/output files, initialdir
+So far, each of our programs has just created one output file, so it's not too bad 
+to keep all the input/output files in the same directory.  But what if we have a lot 
+of output files?  Or a lot of input files?  There's a submit file option that will 
+allow each job to have its own directory.  
+
+~~~
+executable = translate.sh
+# arguments = 
+
+initialdir = $(Process)
+transfer_input_files = ../dictionary,word.txt,
+
+queue 5
+~~~
+
+> ### Try It
+> 
+> Edit the `translate.submit` file to include the above lines.  Then try submitting 
+> the batch of jobs.  Where are the log/error/output files?  
+
+## Mixing and Matching
+
+The sky's the limit!  Using these basic ideas of queuing multiple jobs (either 
+with `queue #`, `queue item matching *.txt` or `queue item from file.txt`), and 
+organizing your job submission folders with paths and `initialdir = `, you can 
+submit batches of jobs in many ways 
+
+> ### Discussion
+> 
+> What are the pieces of your computing task?  How do you want to organize them?  What 
+> should you include in your submit file?  
