@@ -311,3 +311,10 @@ submit batches of jobs in many ways
 > 
 > What are the pieces of your computing task?  How do you want to organize them?  What 
 > should you include in your submit file?  
+
+## Resources
+
+* http://chtc.cs.wisc.edu/helloworld.shtml
+* http://chtc.cs.wisc.edu/submit_variations.shtml
+* http://research.cs.wisc.edu/htcondor/manual/quickstart.html
+* http://research.cs.wisc.edu/htcondor/quick-start.html
