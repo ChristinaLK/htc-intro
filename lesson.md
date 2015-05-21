@@ -40,6 +40,10 @@ input/arguments -> program -> output.  We will later refer to this chain as a "j
 >
 > What does your computational task look like?  What are the input and output?  
 
+In order to run your computational task on a shared computing resource like CHTC, 
+you must be able to run it from the command line with a single command (or write 
+a bash script that executes a series of commands).  
+
 ## For Loops
 
 What if I wanted to run this script multiple times, to print many messages?  
