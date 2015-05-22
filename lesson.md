@@ -111,9 +111,11 @@ To treat each step of the loop as a separate job, assigned to a different machin
 I would use the following lines in a submit file:
 
 ~~~
+## Submit File
+...
 executable = print_msg.sh
 arguments = $(Process)
-
+...
 queue 5
 ~~~
 
@@ -139,9 +141,11 @@ for name in names.txt
 
 In a submit file, the syntax for this looks something like this: 
 ~~~
+## Submit File
+...
 executable = print_msg.sh
 arguments = $(name)
-
+...
 queue name from names.txt
 ~~~
 
@@ -253,9 +257,11 @@ can also use it to indicate different numbered input files.  The submit file
 notation will look something like this: 
 
 ~~~
+## Submit File
+...
 executable = ../img_convert.sh
 transfer_input_files = image$(Process).jpg
-
+...
 queue 3
 ~~~
 
@@ -278,10 +284,12 @@ of using `$(Process)` for that group of images, we will use the following submit
 syntax: 
 
 ~~~
+## Submit File
+...
 executable = ../img_convert.sh
 arguments = $(img)
 transfer_input_files = $(img)
-
+...
 queue img matching *.jpg
 ~~~
 
@@ -302,12 +310,14 @@ German, French and Spanish).  There's a submit file option that will allow the
 translation of each English word to have its own directory.  
 
 ~~~
+## Submit File
+...
 executable = translate.sh
 # arguments = 
-
+...
 initialdir = $(Process)
 transfer_input_files = word.txt,../dictionary/
-
+...
 queue 5
 ~~~
 
