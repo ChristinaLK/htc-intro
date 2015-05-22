@@ -1,5 +1,12 @@
 # An Introduction to High Throughput Computing using HTCondor
 
+## Prerequisites
+
+* Have a CHTC account
+* Familiarity with submit node policies
+* Familiarity with the Unix command line, especially to: navigate within directories, 
+create/copy/move/delete files and directories, and run programs (aka "executables").
+
 ## Getting Started
 
 * Log in to the submit node
@@ -43,8 +50,6 @@ input/arguments -> program -> output.  We will later refer to this chain as a "j
 In order to run your computational task on a shared computing resource like CHTC, 
 you must be able to run it from the command line with a single command (or write 
 a single script that executes your task as a series of commands).  
-
-(include contrasting images)
 
 ## For Loops
 
