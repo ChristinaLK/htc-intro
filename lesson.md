@@ -42,7 +42,9 @@ input/arguments -> program -> output.  We will later refer to this chain as a "j
 
 In order to run your computational task on a shared computing resource like CHTC, 
 you must be able to run it from the command line with a single command (or write 
-a bash script that executes a series of commands).  
+a single script that executes your task as a series of commands).  
+
+(include contrasting images)
 
 ## For Loops
 
@@ -57,7 +59,7 @@ do
 done
 ~~~
 
-Running a for loop on your computer means that you are only using one processor.  
+Running a for loop on your computer means that you are only using one or two processors.  
 
 ![One Processor](figs/single_cpu.png)
 
@@ -74,18 +76,24 @@ on one processor.  Graphically, that looks like this:
 
 ![Many Processors](figs/multi_cpu.png)
 
-In code, we want a for loop that does this:
+In this model, it is not practical for you to run the job directly on all 
+the computers.  There needs to be a program that assigns the jobs to computers and then
+runs them for you.  This kind 
+of program is called either a *batch system* or *batch scheduler*.  For our *pool* of 
+computers, the scheduler is *HTCondor*.  
+
+If we were using regular code to tell the scheduler how many jobs we want to run, 
+we might use a for loop: 
 ~~~
 for num in {0..4}
 	queue a job that runs
 	print_msg $num
 ~~~
 
-This kind of loop can be implemented in a specific kind of file, called a *submit file*, 
-which is given to 
-a program called a *scheduler*.  The *submit file* contains instructions for the loop,
-and the *scheduler* reads it and then will create the jobs described in the loop, and 
-assign them to processors in its *pool* of computers.  
+This kind of loop is implemented in a specific kind of file, called a *submit file*, 
+which is given to the scheduler.  The submit file contains instructions for the loop,
+and the scheduler reads it and then will create the jobs described in the loop, and 
+then run them.  
 
 ## Submit File Basics
 
@@ -231,9 +239,9 @@ sub-directories of images that we would like to convert using this script.  We w
 a loop that does this: 
 
 ~~~
-for img.jpg in img_dir/
+for img in img_dir/
     queue job, where job runs
-    img_convert.sh img.jpg
+    img_convert.sh img
 ~~~
 
 Like before, there is a specific syntax to do this in the submit file.  
@@ -306,7 +314,8 @@ queue 5
 > ### Try It
 > 
 > Edit the `translate.submit` file to include the above lines.  Then try submitting 
-> the batch of jobs.  Where are the log/error/output files?  
+> the batch of jobs.  Where are the log/error/output files?  Why did we use `word.txt` 
+instead of `$(Process)/word.txt` in the `transfer_input_files` line?  
 
 ## Mixing and Matching
 
@@ -317,8 +326,8 @@ submit batches of jobs in many ways
 
 > ### Discussion
 > 
-> What are the pieces of your computing task?  How do you want to organize them?  What 
-> should you include in your submit file?  
+> What are the pieces of your computing task?  How do you want to organize them?  How 
+> can you implement that structure in a submit file?  
 
 ## Resources
 
