@@ -59,9 +59,7 @@ The typical way to do this is the programming construct called a for loop.
 
 ~~~
 for num in {0..4}
-do
-	./print_msg $num
-done
+    print_msg num
 ~~~
 
 Running a for loop on your computer means that you are only using one or two processors.  
@@ -81,7 +79,7 @@ on one processor.  Graphically, that looks like this:
 
 ![Many Processors](figs/multi_cpu.png)
 
-In this model, it is not practical for you to run the job directly on all 
+In this model, it is not practical for you to run the job(s) directly on all 
 the computers.  There needs to be a program that assigns the jobs to computers and then
 runs them for you.  This kind 
 of program is called either a *batch system* or *batch scheduler*.  For our *pool* of 
@@ -92,7 +90,7 @@ we might use a for loop:
 ~~~
 for num in {0..4}
 	queue a job that runs
-	print_msg $num
+	print_msg num
 ~~~
 
 This kind of loop is implemented in a specific kind of file, called a *submit file*, 
@@ -175,6 +173,11 @@ to Condor and let it run them for us.
 	at information about a specific job, or `condor_q -hold` to see why your jobs 
 	are on hold.  See the [Manual Page](http://research.cs.wisc.edu/htcondor/manual/current/condor_q.html) for more information.  
 * Remove jobs from the queue: `condor_rm <netid>` or `<condorm_rm <JobId>`
+
+> ### Try It
+>
+> Try submitting your two submit files: `basic.submit` and `names.submit`.  Monitor the jobs in the queue, and 
+> try some of the options listed above.  How can you tell when the jobs are done?  
 
 ## Side Note: Directory Organization I
 
