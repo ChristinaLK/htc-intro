@@ -56,6 +56,11 @@ and make it run.
 All software starts as text (code) written by people, which is then translated 
 into something the computer understands and can run.  
 
+![people](img-software/programmer.png) ->
+![code](img-software/medium_computer-programming-code.jpg) ->
+![bytecode](img-software/binary.jpg) + links ->
+![computer](img-software/desktop-computer10.png)
+
 This translation process is called compiling and will impact how to package 
 your code to make it portable.  
 
@@ -63,11 +68,18 @@ your code to make it portable.
 
 ### What is the difference?
 
-People -> code -> bytecode + links -> computer
+![people](img-software/programmer.png) ->
+![code](img-software/medium_computer-programming-code.jpg) ->
+![bytecode](img-software/binary.jpg) + links ->
+![computer](img-software/desktop-computer10.png)
 
 ## Compiling: pre-compiled
 
-people -> code -> compile -> book -> computer
+
+![people](img-software/programmer.png) ->
+![code](img-software/medium_computer-programming-code.jpg) ->
+![bytecode](img-software/binary.jpg) + links ->
+![computer](img-software/desktop-computer10.png)
 
 ## Compiling: dynamically
 
@@ -78,14 +90,17 @@ we'll talk about dynamic programs (python, R) in the second half of the morn -->
 
 ## Static compiling
 
-
-people -> code -> compile -> book -> computer
-
+![people](img-software/programmer.png) ->
+![code](img-software/medium_computer-programming-code.jpg) ->
+![bytecode](img-software/binary.jpg) + links ->
+![computer](img-software/desktop-computer10.png)
 
 ## Linked compiling
 
-people -> code -> compile -> book -> computer
-
+![people](img-software/programmer.png) ->
+![code](img-software/medium_computer-programming-code.jpg) ->
+![bytecode](img-software/binary.jpg) + links ->
+![computer](img-software/desktop-computer10.png)
 
 ## Portability of static programs
 
