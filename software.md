@@ -15,7 +15,7 @@ these factors and make the software *portable*.
 <!-- Note: today, discuss what it means for software to be portable, 
 different types of software and how that impacts their portability -->
 
-## Cooking analogy
+## Motivation
 
 ### Running a piece of software is like cooking a meal.  
 
@@ -27,7 +27,7 @@ different types of software and how that impacts their portability -->
 * if you're missing something, you can buy it 
 and it will still be there next time
 
-## Cooking analogy
+## Motivation
 
 ### Running a piece of software is like cooking a meal.  
 
@@ -37,7 +37,7 @@ and it will still be there next time
 * you don't know where everything is
 * not everything is accessible to you
 
-## Cooking analogy
+## Motivation
 
 #### Software portability --> thinking like a backpacker
 
@@ -51,7 +51,7 @@ How do we make software portable?  First, we have to understand
 what software is, how it works, and different ways to install it 
 and make it run.  
 
-## Software 
+## Compiling 
 
 All software starts as text (code) written by people, which is then translated 
 into something the computer understands and can run.  
@@ -61,20 +61,38 @@ into something the computer understands and can run.
 <img src="img-software/binary.jpg" width="150px"> -->
 <img src="img-software/desktop-computer10.png" width="150px">
 
-This translation process is called compiling and will impact how to package 
-your code to make it portable.  
+This translation process is called compiling.  
 
-## Compiling vs Installing
+## Installing
 
-### What is the difference?
+Installation refers to the: 
+* where: the location on the computer where the software will be accessed
+* how: it is compiled or otherwise placed in that location
+* dependencies: the other libraries or programs the software may depend on (including features
+of the base operating system)
 
-<img src="img-software/programmer.png" width="150px"> --> 
-<img src="img-software/medium_computer-programming-code.jpg" width="150px"> -->
-<img src="img-software/binary.jpg" width="150px"> -->
-<img src="img-software/desktop-computer10.png" width="150px">
+## Portability
+
+All of the pieces of the installation process will determine how 
+portable your software is: 
+* where: does the software need to be installed to a system location that is only 
+accessible to someone with administrative privileges?  Or can 
+it be installed to a local directory?  
+* how: does the software require a specific compiler?  How is it compiled?  
+* dependencies: does the software require other packages/software to be installed?  If so, 
+where do those packages need to be?  Will the software run on multiple operating 
+systems?  
+
+* Also, licensing.  
+
+## Some examples: 
+
+* Need these.  :P
+
+<!-- comment: next address these various concerns and how you might make different 
+forms of installation portable -->  
 
 ## Compiling: pre-compiled
-
 
 <img src="img-software/programmer.png" width="150px"> --> 
 <img src="img-software/medium_computer-programming-code.jpg" width="150px"> -->
@@ -83,7 +101,10 @@ your code to make it portable.
 
 ## Compiling: dynamically
 
-people -> code -> babelfish -> computer
+<img src="img-software/programmer.png" width="150px"> --> 
+<img src="img-software/medium_computer-programming-code.jpg" width="150px"> -->
+BABELFISH -->
+<img src="img-software/desktop-computer10.png" width="150px">
 
 <!-- Note: the first half of the morning will focus on pre-compiled programs, 
 we'll talk about dynamic programs (python, R) in the second half of the morn -->
@@ -95,14 +116,12 @@ we'll talk about dynamic programs (python, R) in the second half of the morn -->
 <img src="img-software/binary.jpg" width="150px"> -->
 <img src="img-software/desktop-computer10.png" width="150px">
 
-## Linked compiling
+## Linked compiling/installation
 
 <img src="img-software/programmer.png" width="150px"> --> 
 <img src="img-software/medium_computer-programming-code.jpg" width="150px"> -->
 <img src="img-software/binary.jpg" width="150px"> -->
 <img src="img-software/desktop-computer10.png" width="150px">
-
-## Portability of static programs
 
 
 
