@@ -56,10 +56,10 @@ and make it run.
 All software starts as text (code) written by people, which is then translated 
 into something the computer understands and can run.  
 
-![people](img-software/programmer.png) ->
-![code](img-software/medium_computer-programming-code.jpg) ->
-![bytecode](img-software/binary.jpg) + links ->
-![computer](img-software/desktop-computer10.png)
+<img src="img-software/programmer.png" width="200px"> --> 
+<img src="img-software/medium_computer-programming-code.jpg" width="200px"> -->
+<img src="img-software/binary.jpg" width="200px"> -->
+<img src="img-software/desktop-computer10.png" width="200px"> -->
 
 This translation process is called compiling and will impact how to package 
 your code to make it portable.  
