@@ -71,6 +71,8 @@ Installation refers to the:
 * dependencies: the other libraries or programs the software may depend on (including features
 of the base operating system)
 
+Sometimes installation is as simple as compiling; other times it is more complicated.  
+
 ## Portability
 
 All of the pieces of the installation process will determine how 
@@ -96,7 +98,7 @@ forms of installation portable -->
 
 <img src="img-software/programmer.png" width="150px"> --> 
 <img src="img-software/medium_computer-programming-code.jpg" width="150px"> -->
-<img src="img-software/binary.jpg" width="150px"> -->
+BOOK -->
 <img src="img-software/desktop-computer10.png" width="150px">
 
 ## Compiling: dynamically
@@ -109,21 +111,54 @@ BABELFISH -->
 <!-- Note: the first half of the morning will focus on pre-compiled programs, 
 we'll talk about dynamic programs (python, R) in the second half of the morn -->
 
-## Static compiling
+## Static compiling to a single executable
 
 <img src="img-software/programmer.png" width="150px"> --> 
 <img src="img-software/medium_computer-programming-code.jpg" width="150px"> -->
-<img src="img-software/binary.jpg" width="150px"> -->
+BOOK -->
+<img src="img-software/desktop-computer10.png" width="150px">
+
+<!-- omit this? -->
+## Static compiling to create a directory
+
+<img src="img-software/programmer.png" width="150px"> --> 
+<img src="img-software/medium_computer-programming-code.jpg" width="150px"> -->
+FOLDER -->
 <img src="img-software/desktop-computer10.png" width="150px">
 
 ## Linked compiling/installation
 
 <img src="img-software/programmer.png" width="150px"> --> 
 <img src="img-software/medium_computer-programming-code.jpg" width="150px"> -->
-<img src="img-software/binary.jpg" width="150px"> -->
+PUZZLE_PIECE -->
 <img src="img-software/desktop-computer10.png" width="150px">
 
+<!-- comment: will do exercises for most of these scenarios - two for static 
+compiling, one for software installtion
+ -->
+ 
+## Static Compilation
+ 
+Talk about compiling 
+ 
+## Running compiled code
+ 
+Submit file: 
 
+* executable = compiled_script
+* arguments
+ 
+## Non-static
+
+Need a script to install with each job
+
+## Running non-compiled code
+
+Submit file: 
+
+* executable = wrapper_script
+* arguments -> must be passed through wrapper to final process
+* transfer_input_files = source.tar.gz
 
 # Exercises
 
