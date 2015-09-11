@@ -47,13 +47,10 @@ input/arguments -> program -> output.  We will later refer to this chain as a "j
 >
 > What does your computational task look like?  What are the input and output?  
 
-In order to run your computational task on a shared computing resource like CHTC, 
-you must be able to run it from the command line with a single command (or write 
-a single script that executes your task as a series of commands).  
-
 ## For Loops
 
-What if I wanted to run this script multiple times, to print many messages?  
+Now that I've run one job, what happens if I want to run this program 
+multiple times, to print many messages?  
 
 The typical way to do this is the programming construct called a for loop.  
 
@@ -80,8 +77,8 @@ on one processor.  Graphically, that looks like this:
 ![Many Processors](figs/multi_cpu.png)
 
 In this model, it is not practical for you to run the job(s) directly on all 
-the computers.  There needs to be a program that assigns the jobs to computers and then
-runs them for you.  This kind 
+the computers.  There needs to be a special program that assigns the jobs to 
+computers and then runs them for you.  This kind 
 of program is called either a *batch system* or *batch scheduler*.  For our *pool* of 
 computers, the scheduler is *HTCondor*.  
 
@@ -89,8 +86,7 @@ If we were using regular code to tell the scheduler how many jobs we want to run
 we might use a for loop: 
 ~~~
 for num in {0..4}
-	queue a job that runs
-	print_msg num
+	queue a job that runs "print_msg $num"
 ~~~
 
 This kind of loop is implemented in a specific kind of file, called a *submit file*, 
@@ -98,7 +94,56 @@ which is given to the scheduler.  The submit file contains instructions for the 
 and the scheduler reads it and then will create the jobs described in the loop, and 
 then run them.  
 
-## Submit File Basics
+<!--In order to run your computational task on a shared computing resource like CHTC, 
+you must be able to run it from the command line with a single command (or write 
+a single script that executes your task as a series of commands).  -->
+
+## Submit File Basics: One Job
+
+Before we submit many jobs, let's try submitting one job.  There is a sample 
+submit file called `basic.submit` in this directory.  Open it and take a look 
+at the contents.  
+
+* `universe = vanilla`: this a typical job running a program. 
+* `log`, `output` and `error` :  HTCondor will use these to 
+produce files that give you information about the job.  
+* `executable`: the program you want to run 
+* `arguments`: any arguments needed by the executable, in quotes
+* `should_transfer_files = YES`, `when_to_transfer_output = ON_EXIT`: default 
+settings that don't need to change
+* `transfer_input_files`: list any files that your program needs to run
+* `request_cpus`, `request_memory`, `request_disk`: request the amount of resources
+ your job will need to run
+* `queue`: tells HTCondor to create a job and place it in the queue
+
+> ### Try It
+>
+> We would like to run our `print_msg` script as a HTCondor job, with the argument 
+> being our full name.  What changes need to be made to the `basic.submit` file?  
+> Especially consider: 
+> * What is the executable?  The argument(s)? 
+> * Do we need the `transfer_input_files` line? 
+> * Is this a big job or a small one?  
+
+## Submitting and Managing HTCondor Jobs
+
+### HTCondor commands
+
+* Submit a job: `condor_submit <submit_file>`
+* Look at jobs in the queue: `condor_q <netid>`
+	* The left-hand column indicates the `JobId` (cluster and process number).  The 
+	state has 3 main options: `I` for idle, `R` for running and `H` for held.  
+	* `condor_q` has lots of options.  You can use `condor_q -l <JobId>` to look 
+	at information about a specific job, or `condor_q -hold` to see why your jobs 
+	are on hold.  See the [Manual Page](http://research.cs.wisc.edu/htcondor/manual/current/condor_q.html) for more information.  
+* Remove jobs from the queue: `condor_rm <netid>` or `<condorm_rm <JobId>`
+
+> ### Try It
+>
+> Try submitting our submit file and observing it in the queue.  How do you know 
+> when it is done?  
+
+## Submit File Basics: Many Jobs
 
 ### Numerical arguments: 
 
@@ -128,8 +173,8 @@ to 4), creating a job for each process number.
 
 > ### Try it
 >
-> Fill out the executable and argument lines in `basic.submit`.  Then change the 
-> `queue` statement to run 5 jobs.  
+> Change the "queue" statement in `basic.submit` to run 5 jobs.  
+> Change the "argument" line to match the example above.  
 
 
 ### What if your arguments aren't numbers?  
@@ -158,26 +203,12 @@ queue name from names.txt
 > Change the appropriate lines in `names.submit` to reflect the code above.  You 
 > may also want to the change the prefix to the log/output/error files.  
 
-## Submitting and Managing HTCondor Jobs
-
-Now that we have moved our multiple tasks into a submit file, we can submit them 
-to Condor and let it run them for us.  
-
-### Condor commands
-
-* Submit a job: `condor_submit <submit_file>`
-* Look at jobs in the queue: `condor_q <netid>`
-	* The left-hand column indicates the `JobId` (cluster and process number).  The 
-	state has 3 main options: `I` for idle, `R` for running and `H` for held.  
-	* `condor_q` has lots of options.  You can use `condor_q -l <JobId>` to look 
-	at information about a specific job, or `condor_q -hold` to see why your jobs 
-	are on hold.  See the [Manual Page](http://research.cs.wisc.edu/htcondor/manual/current/condor_q.html) for more information.  
-* Remove jobs from the queue: `condor_rm <netid>` or `<condorm_rm <JobId>`
-
 > ### Try It
 >
-> Try submitting your two submit files: `basic.submit` and `names.submit`.  Monitor the jobs in the queue, and 
-> try some of the options listed above.  How can you tell when the jobs are done?  
+> Try submitting your two submit files: `basic.submit` and `names.submit`.  Monitor 
+> the jobs in the queue, and 
+> try some of the options listed above.  How can you tell when the jobs are done? 
+
 
 ## Side Note: Directory Organization I
 
